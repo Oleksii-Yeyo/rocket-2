@@ -1,13 +1,11 @@
 // const users = require("../../dataBase/users");
 const User = require("../../dataBase/User");
 
-
 module.exports = {
   
   getUsers: () => User.find(),
 
   getSingleUser: (userId) => User.findById(userId),
-
 
   createUser: (userObject) => User.create(userObject),
 
