@@ -49,7 +49,7 @@ module.exports = {
   deleteUser: async (req, res, next) => {
     try {
       await userService.deleteUser(req.user._id);
-      res.json(`User ${req.user.firstName} ${req.user.lastName} with ID: ${req.user._id} was deleted.`);
+      res.status(204).end();
     } catch (e) {
       next(e);
     }
