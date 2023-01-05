@@ -24,7 +24,7 @@ module.exports = {
       const user = await userService.findUserByEmail(req.body.email);
 
       if (user[0] !== undefined) {
-        // console.log(user)
+       
         throw new Forbidden(`User with this email already exists: ${req.body.email}. Please, try a different email.`);
       }
 
