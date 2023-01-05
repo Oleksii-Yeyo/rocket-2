@@ -8,7 +8,8 @@ userRouter.post('/', mdlwr.checkIsInputValid, mdlwr.checkIsEmailExist, controlle
 
 // userRouter.use('/:userId', mdlwr.checkIsUserExists);
 userRouter.get('/:userId', mdlwr.checkIsUserExists, controller.getUserById);
-userRouter.put('/:userId', mdlwr.checkIsInputValid, mdlwr.checkIsUserExists, controller.updateUser);
+// eslint-disable-next-line max-len
+userRouter.put('/:userId', mdlwr.checkIsInputValid, mdlwr.checkIsUserExists, mdlwr.checkIsEmailExistWhenUpdate, controller.updateUser);
 userRouter.delete('/:userId', mdlwr.checkIsUserExists, controller.deleteUser);
 
 

@@ -34,6 +34,22 @@ module.exports = {
     }
   },
 
+  checkIsEmailExistWhenUpdate: async (req, res, next) => {
+    try {
+      const user = await userService.findUserByEmail(req.body.email);
+  
+      if (user[0] !== undefined) {
+        if (user[0].id !== req.user.id) {
+          throw new Forbidden(`User with this email already exists: ${req.body.email}. Please, try a different email.`);
+        }
+      }
+
+      next();
+    } catch (e) {
+      next(e);
+    }
+  },
+
   checkIsInputValid: (req, res, next) => {
     try {
       if (req.body.age <= 0) {
