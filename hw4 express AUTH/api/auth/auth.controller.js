@@ -8,14 +8,10 @@ module.exports = {
         try {
             const user = req.locals.user;
 
-
             await oauthService.checkPassword(user.password, req.body.password);
             const tokenPair = oauthService.generateNewAccessTokenPair({...user._id});
 
             await authService.createOauthPair({...tokenPair, user: user._id});
-
-            // delete user.password
-            // user.tokenPair = tokenPair
 
             res.json({
                 ...tokenPair,
