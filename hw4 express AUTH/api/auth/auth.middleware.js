@@ -6,7 +6,7 @@ const { AUTHORIZATION } = require('../../configs/variables');
 module.exports = {
     validateAccessToken: async (req, res, next) => {
         try {
-            const accessToken = req.get(AUTHORIZATION);     // get data from query's header
+            const accessToken = req.get(AUTHORIZATION);    // get data from query's header
 
             if (!accessToken) {
                 throw new Unauthorized('No token');
@@ -21,8 +21,6 @@ module.exports = {
                 throw new Unauthorized('Invalid token');
             }
 
-            // console.log(tokenWithUser);
-
             req.user = tokenWithUser.user;
             next();
         } catch (e) {
@@ -32,7 +30,7 @@ module.exports = {
 
     validateRefreshToken: async (req, res, next) => {
         try {
-            const refreshToken = req.get(AUTHORIZATION);    // get data from query's header
+            const refreshToken = req.get(AUTHORIZATION);
 
             if (!refreshToken) {
                 throw new Unauthorized('No token');
@@ -42,12 +40,9 @@ module.exports = {
 
             const tokenWithUser = await service.getByParams( {refreshToken });
 
-
             if(!tokenWithUser){
                 throw new Unauthorized('Invalid token');
             }
-
-            // console.log(tokenWithUser);
 
             req.user = tokenWithUser.user;
             next();
