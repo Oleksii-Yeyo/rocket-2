@@ -37,28 +37,9 @@ const validateToken = (token = '', tokenType = 'access') => {
     }
 };
 
-// const validateRefreshToken = (refreshToken = '') => {
-//     try {
-//         return jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
-//     } catch (e) {
-//         throw new Unauthorized(e.message || 'Invalid token');
-//     }
-// };
-
-// const validateAccessToken = (accessToken = '') => {
-//     try {
-//         return jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
-//     } catch (e) {
-//         throw new Unauthorized(e.message || 'Invalid token');
-//     }
-
-// }
-
 module.exports = {
     hashPassword,
     checkPassword,
     generateNewAccessTokenPair,
-    validateToken,
-    // validateRefreshToken,
-    // validateAccessToken
+    validateToken
 };
