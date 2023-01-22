@@ -24,7 +24,6 @@ module.exports = {
 
     logoutOneDevice: async (req, res, next) => {
         try {
-            // logout from one device
             const accessToken = req.get(AUTHORIZATION); // get data from query's header
             await authService.deleteOneByParams({ accessToken });
             
@@ -36,8 +35,7 @@ module.exports = {
 
     logoutAllDevices: async (req, res, next) => {
         try {
-            // logout from all devices
-            const accessToken = req.get(AUTHORIZATION); // get data from query's header
+            const accessToken = req.get(AUTHORIZATION);
             await authService.deleteManyByParams({ user: req.user._id });
             
             res.status(NO_CONTENT).json();
@@ -50,7 +48,7 @@ module.exports = {
         try {
             const user = req.user;
 
-            const refreshToken = req.get(AUTHORIZATION); // get data from query's header
+            const refreshToken = req.get(AUTHORIZATION);
             await authService.deleteOneByParams({ refreshToken });
 
             const tokenPair = oauthService.generateNewAccessTokenPair({...user._id});
